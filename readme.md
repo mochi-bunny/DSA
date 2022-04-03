@@ -22,7 +22,7 @@ To implement a College Database Management System, using as many concepts from D
 ## Ideas
 
 1. Input data from a file, into records
-   - The data will of the form: `<ID, Name, Role, Age>`
+   - The data will be of the form: `<ID, Name, Role, Age>`
    - Each record contains data in individual properties (not the entire line)
 2. Implement Queued DLL using 2 Stacks
 3. Sort the data, using (Some) Sort
@@ -58,14 +58,37 @@ Algorithm tree()
 ## Source Code
 
 ```java
-c
+package Code; // this file is in a subfolder of the git repo
+
+// packages
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+class dsa
+{
+	static String inputFile = "input.txt";
+	static String outputFile = "output.txt";
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		System.out.println("Hello World");
+	}
+}
 ```
-
-
 
 ## Input
 
+```
+2020A7PS0198U, Ahmed Thahir, Student, 19
+2020A7PS0198U, Ahmed Thahir, Student, 19
+2020A7PS0198U, Ahmed Thahir, Student, 19
+```
+
 ## Output
+
+```
+```
 
 # DSA Concepts Used
 
