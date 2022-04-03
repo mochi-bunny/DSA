@@ -22,9 +22,9 @@ To implement a College Database Management System, using as many concepts from D
 ## Ideas
 
 1. Input data from a file, into records
-   - The data will of the form: <ID, Name, Role, Age>
+   - The data will of the form: `<ID, Name, Role, Age>`
    - Each record contains data in individual properties (not the entire line)
-2. Implement queue using 2 stacks
+2. Implement Queued DLL using 2 Stacks
 3. Sort the data, using (Some) Sort
 4. Look for an inputted element, using Binary Search
 5. Classify using trees
@@ -57,6 +57,12 @@ Algorithm tree()
 
 ## Source Code
 
+```java
+c
+```
+
+
+
 ## Input
 
 ## Output
@@ -65,6 +71,7 @@ Algorithm tree()
 
 - [x] Stacks
 - [x] Queues
+- [x] Double Linked List
 - [x] Sorting - (Some) Sort
 - [x] Searching - Binary Search
 - [x] Trees
