@@ -2,7 +2,7 @@
 
 |      ID       |        Name        |        Contributions(s)         |
 | :-----------: | :----------------: | :-----------------------------: |
-| 2020A7PS0016U |    Megha Manoj     |                                 |
+| 2020A7PS0016U |    Megha Manoj     | stack(), queue(), binaryseach() |
 | 2020A7PS0198U |    Ahmed Thahir    | Documentation<br />Presentation |
 | 2020A7PS0221U | Anmol Deepak Kumar |                                 |
 | 2020A7PS0224U |   Maaz Chowdhry    |                                 |
