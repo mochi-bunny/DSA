@@ -6,6 +6,44 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+class Stack
+{
+    int t=-1;
+    String[] stack;
+    int size=0;
+    
+    public Stack(int n){
+        size=n;
+        stack= new String[size];
+    }
+    
+    
+    void push(String a){
+        if (t==size-1) System.out.println("stack full");
+        else{
+            t=t+1;
+            stack[t]=a;
+            System.out.println("VALUE INSERTED");
+        }
+    }
+    
+    void pop(){
+        if (t==-1) System.out.println("STACK EMPTY");
+        else{
+            String s=stack[t];
+            stack[t]=null;
+            t=t-1;
+            System.out.println(s+" removed from STACK");
+            
+        }
+    }
+    
+     void display(){
+        for(int i=0; i<size;i++){
+            if (stack[i]!=null) System.out.println(stack[i]);
+        }
+    }   
+}
 
 class Queue
 {
