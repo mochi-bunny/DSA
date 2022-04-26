@@ -37,7 +37,7 @@ class Queue{
     
     int size=0;
     int last=0;
-    class Stack
+    class Stack			//SUBCLASS STACK 
     {
         int t=-1;
         Record[] stack;
@@ -101,9 +101,10 @@ class Queue{
         
     }
     
-    Stack s1; Stack s2;
+    Stack s1;	//ENQUEUE STACK
+    Stack s2;	//DEQUEUE STACK
     
-    void copy(Stack stack1, Stack stack2){
+    void copy(Stack stack1, Stack stack2){ //COPYING VALUES FROM ONE STACK TO ANOTHER
        
         for (int i=0;i<size ;i++ ){
             stack2.push(stack1.stack[i]);
@@ -111,7 +112,7 @@ class Queue{
         //stack2.display();
     }
     
-    public Queue(int n){
+    public Queue(int n){ //INITIALISES 2 STACKS
         size= n;
         s1= new Stack();
         s2= new Stack();
@@ -121,7 +122,7 @@ class Queue{
         s1.push(rec); //CREATING ENQUEUE STACK
         
         if (s1.isFull()){
-          Stack s3= new Stack();  //DUMMY STACK FOR POPPING VALUES FROM ENQUEUE AND INSERTING INTO DEQUEUE
+          Stack s3= new Stack();  //DUMMY STACK FOR POPPING VALUES FROM ENQUEUE AND INSERTING INTO DEQUEUE STACK
           
            copy(s1,s3);
            System.out.println("FULL");
