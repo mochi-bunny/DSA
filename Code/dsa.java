@@ -11,10 +11,7 @@ class Record{   //STORE RECORDS
         String role;
         String position;
         
-        public Record(){
-            String x= "empty";
-        }
-        
+       public Record(){ }
         public Record(String rec){
             StringTokenizer st= new StringTokenizer(rec, ",");
             this.id= Integer.parseInt(st.nextToken());
@@ -41,18 +38,19 @@ class Record{   //STORE RECORDS
 
 class Queue{
     
-    int size=0;
+    //int size=0;
     int last=0;
+    int capacity=20;
+    
     class Stack     //SUBCLASS STACK FOR CREATING STACK OBJECTS
     {
         int t=-1;
-        Record[] stack;
-        //int size=0;
         
-        public Stack(){
-            
-            stack= new Record[size];
-            last=size;
+        Record[] stack;
+        //int size=t+1;
+        
+        public Stack(){ 
+            stack= new Record[capacity]; 
         }
         
         boolean isEmpty(){
@@ -61,32 +59,31 @@ class Queue{
         }
         
         boolean isFull(){
-            if (t==size-1){
-                
-                return true;
-                
-                
-            }
+            if ( getSize() == capacity ){           return true;            }
             return false;
         }
+        
         void push(Record a){
             
-            if (t==size-1) System.out.println("stack full");
+            if (isFull()) System.out.println("stack full");
             else{
                 
                 t=t+1;
+                //size++;
                 stack[t]=a;
                 System.out.println("VALUE INSERTED");
-            }
+             }
         
         }
         
         Record pop(){
-            Record s= new Record();
+           Record s= new Record();
+           
            if(!isEmpty()){
                  s=stack[t];
                 stack[t]=null;
                 t=t-1;
+               // size--;
                 
                 //System.out.println(s+" removed from STACK");
             }    
@@ -96,7 +93,7 @@ class Queue{
         
         void display(){  //DISPLAYS RECORDS PRESENT IN STACK
             if(!isEmpty()){
-            for(int i=0; i<size;i++){
+            for(int i=0; i<getSize();i++){
                 if (stack[i]!=null) stack[i].print();
     
             }
@@ -106,158 +103,103 @@ class Queue{
         
         Record[] getStack(){    return stack;}
         
-        
+        int getSize(){  return t+1;    }
     }
+    
+    
     
     Stack s1; Stack s2;
     
-    void copy(Stack stack1, Stack stack2){
-       
-        for (int i=0;i<size ;i++ ){
-            stack2.push(stack1.stack[i]);
-        } 
-        //stack2.display();
-    }
+    public Queue(){ //INITIALIZES 2 STACKS- ONE FOR ENQUEUE AND ONE FOR DEQUEUE
     
-    public Queue(int n){ //INITIALIZES 2 STACKS- ONE FOR ENQUEUE AND ONE FOR DEQUEUE
-        size= n;
         s1= new Stack();
         s2= new Stack();
     }
     
     void enqueue(Record rec){
         s1.push(rec); //CREATING ENQUEUE STACK
+       
+      //  System.out.println(s1.getSize());
         
-        if (s1.isFull()){
-          Stack s3= new Stack();  //DUMMY STACK FOR POPPING VALUES FROM ENQUEUE AND INSERTING INTO DEQUEUE STACK
-          
-           copy(s1,s3);
-           System.out.println("FULL");
            
-           
-            while(!s3.isEmpty()){  //CREATING DEQUEUE STACK
-               Record r1= s3.pop();
+    }
+    
+    void dequeue(){
+        while(!s1.isEmpty()){  //CREATING DEQUEUE STACK
+               Record r1= s1.pop();
+              // r1.print();
                s2.push(r1);
            }
            
-           
-        }
+         //  s2.display();
+    }
     
+    Stack getQ(){ 
+         dequeue();
+      //   s2.display();
+        return s2;
         
     }
     
-    Record[] getEnQ(){ return s1.getStack();}
     
-    int getSize(){  return size;    }
-}
-
-
-public class Main
-{
-    static Scanner s= new Scanner(System.in);
+    void binSearch(int id_no){
+        Stack stck= getQ();
+       // stck.display();
+        Record[] records= stck.getStack();
+        
+        int r= stck.getSize() - 1;
+         int l=0;
+        int p=0;
+        
+        Record rex= new Record();
+        
+        while(l<=r){
+            int mid= (l+r)/2;
+             
+            int id_mid= records[mid].getID();
+            
+            
+            if (id_mid == id_no){
+                rex= records[mid];
+                 p=1;
+                break;
+            }
+            
+            else if (id_mid > id_no) { l= mid + 1; }
+            
+            else{ r= mid - 1; }
+            
+        }
+        
+        if (p==1){ 
+            System.out.println("Record found");
+            rex.print();  
+        }
+        else{   System.out.println("Record not found");        }
+    }
     
-	public static void main(String[] args) {
-		   try{ 
-	        File f= new File("sports.txt");
-	        Scanner sc= new Scanner(f,"utf-8");
-	        
-	        Queue q= new Queue(4);  //1st stack
-	       
-	        
-	        while(sc.hasNextLine()){
-	            
-	        String line= sc.nextLine();
-	        Record recn= new Record(line);
-	         q.enqueue(recn);
-	         }
-	         
-	      /*  System.out.println("enqueue stack");
-	          q.s1.display();
-             System.out.println("\n\ndequeue stack");
-             q.s2.display();
-	       */  
-	        
-	         System.out.print("1-binarysearch\n2-radix sort :\nn=");
-	         int n= s.nextInt();
-	         
-	         switch(n){
-	             case 1:{  
-	                 System.out.println("BINARYSEARCH\n"); 
-	                 Record[] s_stack= q.getEnQ();
-	                 
-	                 int len= q.getSize();
-	                 BinSearch(s_stack, len);
-	                 break;
-	             }
-	             
-	             case 2:{
-	                 System.out.println("RADIX SORT\n"); 
-	                 Record[] s_stack= q.getEnQ();
-	                 
-	                 int len= q.getSize();
-	                 radixSort(s_stack, len);
-	                 for(Record re: s_stack){
-	                     re.print();
-	                     System.out.println();
-	                 }
-	                 break;
-	             }
-	                 
-	             
-	            default:{ break;}
-	                
-	         };
-	       
-	   }catch(IOException e){ e.printStackTrace(); }
-	    
-	}
-	
-	
-	static void BinSearch(Record[] list, int len){
-	    
-	    
-	    System.out.print("enter id to search: ");
-	    int id_no= s.nextInt();
-	    Record rex= new Record();
-	    
-	     int p=0;
-	     int l=0;
-	     int r= len-1;
-	     
-	     while(l<=r){
-	         int mid= (r+l)/2; 
-	         
- 	         if ( list[mid].getID() == id_no){
-	             rex= list[mid];
-	             p=1;
-	             break;
-	         }
-	         
-	         else  if ( list[mid].getID() > id_no) { r=mid-1; }
- 	        
- 	          else  { l=mid+1; }
-	     }
-	     
-	     if (p==1){
-	         System.out.println("record found");
-	       rex.print();
-	     }
-	     else{ System.out.println("Record not found");     }
-	    
-	    
-	    
-	}
-	
-	static void radixSort(Record[] r, int len){
-	    int max= getMax(r, len);
+     
+    
+     void radixSort(){
+        Stack stck= getQ();
+        
+        Record[] records= stck.getStack();
+        
+        int len= stck.getSize();
+	    int max= getMax(records, len);
 	    
 	    for (int e=1; max/e >0 ; e*= 10 ){
-	        sort(r, 0, len-1 );
+	        sort(records, 0, len-1 );
+	    } 
+	    
+	    
+	    for (int i=0; i<=len-1; i++){
+	        records[i].print();
 	    } 
 	    
 	}
 	
-	  static void merge(Record arr[], int l, int m, int r)
+	   void merge(Record arr[], int l, int m, int r)
     {
         // Find sizes of two subarrays to be merged
         int n1 = m - l + 1;
@@ -308,7 +250,7 @@ public class Main
     }
   
      
-    static void sort(Record arr[], int l, int r)
+     void sort(Record arr[], int l, int r)
     {
         if (l < r) {
             // Find the middle point
@@ -323,7 +265,7 @@ public class Main
         }
     }
 	
-	static int getMax(Record[] r, int len){
+	 int getMax(Record[] r, int len){
 	    int max= r[0].getID();
 	    
  	    for (int i=1; i<len ; i++){
@@ -333,6 +275,58 @@ public class Main
 	    } 
 	    return max;
 	}
-	
-	
+    
+    
+}
+
+
+public class Main
+{
+    static Scanner s= new Scanner(System.in);
+    
+	public static void main(String[] args) {
+		   try{ 
+	        File f= new File("sports.txt");
+	        Scanner sc= new Scanner(f,"utf-8");
+	        
+	        Queue q= new Queue();  //1st stack
+	       
+	        
+	        while(sc.hasNextLine()){
+	            
+    	        String line= sc.nextLine();
+    	        Record recn= new Record(line);
+    	         q.enqueue(recn);
+	        }
+	       
+	       
+	        
+	       
+	      System.out.print("1-binarysearch\n2-radix sort :\nn=");
+	         int n= s.nextInt();
+	         
+	         switch(n){
+	             case 1:{  
+	                 System.out.println("BINARYSEARCH\n"); 
+	                 System.out.print("ID to be searched: ");
+	                 int id_no= s.nextInt();
+	                 q.binSearch(id_no);
+	                 break;
+	             }
+	             
+	             case 2:{
+	                 System.out.println("RADIX SORT\n"); 
+	                 q.radixSort(); 
+	                 break;
+	             }
+	               
+	             
+	            default:{ break;}
+	                
+	         };
+	        
+	       
+	       
+		   }catch(IOException e){     e.printStackTrace();  }
+	}
 }
