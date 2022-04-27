@@ -23,7 +23,7 @@ class Record{   //STORE RECORDS
             
         }
         
-        void print(){
+        void print(){  //PRINT RECORD DETAILS
             System.out.println("\nid: "+id+"\nname: "+name+"\nage: "+age+"\nrole: "+role+"\nposition: "+position);
             
         }
@@ -40,7 +40,7 @@ class Queue{
     
     //int size=0;
     int last=0;
-    int capacity=20;
+    int capacity=20; //TOTAL CAPACITY OF STACK
     
     class Stack     //SUBCLASS STACK FOR CREATING STACK OBJECTS
     {
@@ -49,7 +49,7 @@ class Queue{
         Record[] stack;
         //int size=t+1;
         
-        public Stack(){ 
+        public Stack(){ //INITIALISES STACK WITH MENTIONED DEFAULT CAPACITY
             stack= new Record[capacity]; 
         }
         
@@ -76,7 +76,7 @@ class Queue{
         
         }
         
-        Record pop(){
+        Record pop(){       //POP FROM STACK
            Record s= new Record();
            
            if(!isEmpty()){
@@ -101,14 +101,15 @@ class Queue{
           }
         }
         
-        Record[] getStack(){    return stack;}
+        Record[] getStack(){    return stack;}   //RETURNS THE STACK ARRAY
         
-        int getSize(){  return t+1;    }
+        int getSize(){  return t+1;    } //SIZE OF THE STACK(GETS UPDATED)
     }
     
     
     
-    Stack s1; Stack s2;
+    Stack s1;  //ENQ STACK
+    Stack s2;   //DEQ STACK
     
     public Queue(){ //INITIALIZES 2 STACKS- ONE FOR ENQUEUE AND ONE FOR DEQUEUE
     
@@ -134,7 +135,7 @@ class Queue{
          //  s2.display();
     }
     
-    Stack getQ(){ 
+    Stack getQ(){  //DEQUEUES THE ENQ STACK, S1, INTO S2 AND RETURNS S2
          dequeue();
       //   s2.display();
         return s2;
@@ -142,16 +143,16 @@ class Queue{
     }
     
     
-    void binSearch(int id_no){
-        Stack stck= getQ();
+    void binSearch(int id_no){ // SEARCHES BASED ON ID
+        Stack stck= getQ();     // FETCHES DEQUEUE STACK OBJECT
        // stck.display();
-        Record[] records= stck.getStack();
+        Record[] records= stck.getStack();  //FETCHES STACK ARRAY FOR SEARCHING
         
         int r= stck.getSize() - 1;
          int l=0;
         int p=0;
         
-        Record rex= new Record();
+        Record rex= new Record();  //EMPTY RECORD FOR ASSIGNING FOUND RECORD
         
         while(l<=r){
             int mid= (l+r)/2;
@@ -181,11 +182,11 @@ class Queue{
      
     
      void radixSort(){
-        Stack stck= getQ();
+        Stack stck= getQ();    // FETCHES DEQUEUE STACK OBJECT
         
-        Record[] records= stck.getStack();
+        Record[] records= stck.getStack();    //FETCHES STACK ARRAY FOR SEARCHING
         
-        int len= stck.getSize();
+        int len= stck.getSize();        // FETCHES THE SIZE OF THE STACK
 	    int max= getMax(records, len);
 	    
 	    for (int e=1; max/e >0 ; e*= 10 ){
@@ -296,13 +297,13 @@ public class Main
 	            
     	        String line= sc.nextLine();
     	        Record recn= new Record(line);
-    	         q.enqueue(recn);
+    	         q.enqueue(recn);   //INSERTS RECORDS INTO STACK S1
 	        }
 	       
 	       
 	        
 	       
-	      System.out.print("1-binarysearch\n2-radix sort :\nn=");
+	      System.out.print("1-binarysearch\n2-radix sort :\nn=");   //MENU
 	         int n= s.nextInt();
 	         
 	         switch(n){
