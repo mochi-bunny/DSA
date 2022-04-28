@@ -1,0 +1,216 @@
+
+CONTRIBUTIONS:
+Class queue using 2 stacks- enqueueing and dequeueing
+Binarysearch
+Radix/ mergeSort
+getQ
+
+Class stack-
+push
+pop
+isEmpty
+isFull
+getStack
+getSize
+display
+
+Class record
+get methods for each attribute
+print
+constructor
+
+
+
+
+Algorithm enqueue(rec):
+INPUT: Record rec to be inserted into enqueue stack s1
+OUTPUT: Stack s1 with new records
+    s1.push(rec)
+
+Algorithm dequeue():
+		while !s1.isEmpty() do
+			 r1 = s1.pop();
+  			 s2.push(r1);
+
+Algorithm getQ():
+		 dequeue()
+		 Return dequeue stack
+
+Algorithm binarySearch(name):
+  INPUT: id to be searched
+  OUTPUT: displays whether record has been found
+
+  radixSort()
+
+  id_no= Hash.hash(name) //fetches hash code for name
+
+  stck= getQ()
+
+  records= stck.getStack()
+
+  right= upperbound(records)
+  left= lowerbound(records)
+  p=0
+
+  While left<=right Do
+      mid= (left+right)/2
+
+      id_mid= records[mid].getID()
+
+      if id_mid== id_no then
+          p=1
+          record found
+      Else if id_no> id_mid Do
+          left= mid+ 1
+      Else 
+          right= mid-1
+
+      if p==1 then
+          display record
+      Else 
+          display name+ " not found"
+
+
+
+
+Algorithm radixSort():
+  INPUT: none
+  OUTPUT: sorted stack
+
+  stck= getQ()
+  records= getStack()
+
+  len= stck.getSize()
+  max= getMax(records, len)
+
+  for e=1 till max/e>0 Do
+      sort(records, lowerbound(records) , upperbound(records))
+      e*=10
+
+
+ Algorithm merge(arr, l ,m ,r):
+
+  n1=  = m - l + 1
+  n2 = r - m
+
+  initialise array L of length n1
+
+  initialise array R of length n2
+
+  for i=0 to i<n1 Do
+      L[i]= arr[l + i]
+      i= i+1
+
+  for j=0 to j<n2 Do
+      L[j]= arr[1 + m+ j]
+      j= j+1
+
+  i=0
+  j=0
+  k=l 
+
+  While i < n1 && j < n2 Do
+      if L[i].getID() <= L[j].getID() Then
+          arr[k] = L[i]
+          i= i+1 
+      Else
+          arr[k] = R[j]
+          j= j+1 
+      k= k+ 1 
+
+  While i< n1 Do
+      arr[k] = L[i]
+      i = i + 1 
+      k= k + 1 
+
+
+  While j< n2 Do
+      arr[k] = R[j]
+      j = j + 1 
+      k= k + 1 
+
+
+Algorithm sort(arr, l ,r):
+  INPUT: Array arr to be sorted with its upper and lowerbounds
+  OUTPUT: sorted array arr
+  if l< r then 
+      m= l + (r-l)/ 2
+      sort(arr, l, m)
+      sort(arr, m + 1, r)
+      merge(arr, l, m, r)
+
+
+Algorithm getMax(r, len):
+  INPUT: Array r of length len
+  OUTPUT: Maximum value present in array r based on ID number
+
+  max= r[0].getID()
+
+  for i=1 to i< len Do
+      if max< r[i].getID() Then
+          max= r[i].getID()
+  Return max
+
+
+
+------------------------------------------------
+STACK CLASS ALGORITHMS
+
+Algorithm isEmpty():
+  if t== -1 Then
+      return True
+  return False
+
+Algorithm isFull():
+  if getSize() == capacity  Then
+      return True
+  return False
+
+Algorithm push(a):
+  INPUT: record a to be inserted into stack
+  OUTPUT: stack with newly inserted value and incremented top
+  if isFull()  Then
+      return "stack full"
+  Else
+      t= t+1
+      stack[t]= a
+    
+Algorithm pop():
+
+  INPUT: None
+  OUTPUT: Deleted record from stack
+  initialise temporary record r
+
+  if not isEmpty()  Then
+      s= stack[t]
+      stack[t]=Null
+      t= t- 1
+  Return s
+
+Algorithm display():
+ 
+
+  if not isEmpty()  Then
+      for i=0 to i< getSize() Do
+          if stack[i] != Null Then
+              stack[i].print()
+
+        
+Algorithm getSize():
+  Return t + 1 
+ 
+Algorithm getStack():
+  Return stack
+  
+
+         
+  
+ 
+
+
+
+
+
+
+
+
